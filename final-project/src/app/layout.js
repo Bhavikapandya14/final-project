@@ -1,5 +1,7 @@
 import localFont from "next/font/local";
 import "./globals.css";
+import ClickcontextProvider from "./providers/click-context-provider";
+import UserSessionProvider from "./providers/user-session-providers";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -21,7 +23,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <UserSessionProvider>
+          <ClickcontextProvider>
         {children}
+        </ClickcontextProvider>
+        </UserSessionProvider>
       </body>
     </html>
   );
